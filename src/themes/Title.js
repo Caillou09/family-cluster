@@ -1,14 +1,15 @@
 
 import styled from 'styled-components';
-import {colors, pxToRem} from './helpers';
-import ButtonStyled from './ButtonStyled'
+import {colors, pxToRem, media} from './helpers';
+import ButtonStyled from './ButtonStyled';
+import {Link} from 'react-router-dom';
 
 import React from 'react'
 
 const Title  = ({className, children}) => {
   return (
     <div className={className}>
-      <h1>{children}</h1>
+      <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
       <ButtonStyled url='/connexion' text='Connexion'/>
     </div>
   )
@@ -18,7 +19,11 @@ export default styled(Title)`
 display : flex;
 background : ${colors.primary};
 align-items : center;
+flex-direction : column;
 
+${media.small`
+  flex-direction : row;
+`};
 
   h1 {
     font-size : ${pxToRem(64)};
@@ -29,4 +34,7 @@ align-items : center;
     margin : auto;
     width : auto;
   }
+
+
+
 `

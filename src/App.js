@@ -15,8 +15,7 @@ function App() {
 
 
   return (
-    <>
-      <GlobalStyle/>      
+    <>    
       <MainContent>
         <SectionWarmUp/>
         <SectionWod/>

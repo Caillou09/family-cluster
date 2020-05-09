@@ -24,6 +24,7 @@ const Global = createGlobalStyle`
 
 body{
   transition : 600ms;
+  width : 100%
 }
 
 

@@ -4,7 +4,8 @@ import './index.css';
 import App from './App';
 import Connexion from './components/Connexion';
 import Title from './themes/Title';
-import NotFound from './components/NotFound'
+import NotFound from './components/NotFound';
+import GlobalStyle from './themes/GlobalStyle'
 import * as serviceWorker from './serviceWorker';
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
@@ -12,6 +13,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 function Root() {
   return(
     <BrowserRouter>
+      <GlobalStyle/>
       <Title>WOD of the day</Title>
       <Switch>
         <Route exact path='/' component={App}/>

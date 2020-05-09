@@ -9,7 +9,6 @@ import {colors, pxToRem} from '../themes/helpers'
 const NotFound = ({className}) => {
   return (
     <>
-    <GlobalStyle/>
     <div className={className}>
       <h5>Fuck Burpees !!</h5>
       <p>

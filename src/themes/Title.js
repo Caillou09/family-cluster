@@ -20,6 +20,7 @@ display : flex;
 background : ${colors.primary};
 align-items : center;
 flex-direction : column;
+padding : ${pxToRem(5)};
 
 ${media.small`
   flex-direction : row;

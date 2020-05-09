@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import styled from 'styled-components'
-import {pxToRem} from '../themes/helpers'
+import {pxToRem, media} from '../themes/helpers'
 
 import TitleSection from '../themes/TitleSection'
 import InfoWarmUp from './InfoWarmUp'
@@ -51,5 +51,9 @@ useEffect(() => {
 export default styled(SectionWarmUp)`
   display : inline-flex;
   flex-direction : column;
-  padding : ${pxToRem(50)};
+  padding : ${pxToRem(10)};
+
+  ${media.small`
+    padding : ${pxToRem(50)};
+  `};
 `

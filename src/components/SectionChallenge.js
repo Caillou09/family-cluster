@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 import styled from 'styled-components'
-import {pxToRem} from '../themes/helpers'
+import {pxToRem, media} from '../themes/helpers'
 
 import TitleSection from '../themes/TitleSection'
 import ExoCard from './ExoCard'
@@ -38,8 +38,12 @@ useEffect(() => {
 
 
 export default styled(SectionWarmUp)`
-  display : inline-flex;
-  flex-direction : column;
+display : inline-flex;
+flex-direction : column;
+padding : ${pxToRem(10)};
+align-items : center;
+
+${media.small`
   padding : ${pxToRem(50)};
-  align-items : center;
+`};
 `

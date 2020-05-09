@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import Title from './themes/Title'
+import styled from 'styled-components'
 import './App.css';
 
+import SectionWarmUp from './components/SectionWarmUp'
+import SectionWod from './components/SectionWod'
+import GlobalStyle from './themes/GlobalStyle'
+import SectionChallenge from './components/SectionChallenge'
+import MainContent from './themes/mainContent'
+
+
 function App() {
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle/>
+      <Title>WOD of the day</Title>
+      <MainContent>
+        <SectionWarmUp/>
+        <SectionWod/>
+        <SectionChallenge/>
+      </MainContent>
+
+
+    </>
   );
 }
 

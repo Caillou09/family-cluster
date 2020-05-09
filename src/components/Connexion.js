@@ -20,7 +20,7 @@ const Connexion = ({className}) => {
 export default styled(Connexion)`
   display : flex;
   flex-direction : column;
-  width : ${pxToRem(400)};
+  max-width : ${pxToRem(400)};
   margin : auto;
   margin-top : ${pxToRem(50)};
   padding : ${pxToRem(20)};
@@ -29,6 +29,7 @@ export default styled(Connexion)`
   justify-content : space-around;
   border-radius:  4px;
   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.12);
+  text-align : center;
 
   input{
     font-size:  16px;

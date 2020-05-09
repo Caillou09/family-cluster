@@ -8,4 +8,4 @@ const MainContent = styled.div`
 
 `
 
-export default MainContent
+export default MainContent;

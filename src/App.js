@@ -16,8 +16,7 @@ function App() {
 
   return (
     <>
-      <GlobalStyle/>
-      <Title>WOD of the day</Title>
+      <GlobalStyle/>      
       <MainContent>
         <SectionWarmUp/>
         <SectionWod/>

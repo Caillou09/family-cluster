@@ -22,6 +22,10 @@ const Global = createGlobalStyle`
   color : ${colors.white}
 }
 
+body{
+  transition : 600ms;
+}
+
 
 `;
 

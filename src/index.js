@@ -2,11 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Connexion from './components/Connexion';
+import Title from './themes/Title';
+import NotFound from './components/NotFound'
 import * as serviceWorker from './serviceWorker';
+
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+
+function Root() {
+  return(
+    <BrowserRouter>
+      <Title>WOD of the day</Title>
+      <Switch>
+        <Route exact path='/' component={App}/>
+        <Route exact path='/connexion' component={Connexion}></Route>
+        <Route component={NotFound}></Route>
+      </Switch>
+    </BrowserRouter>
+  )
+
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -23,7 +23,7 @@ export default styled(ExoCard)`
 
 
   img{
-    width : ${pxToRem(120)};
+    width : ${pxToRem(110)};
   }
 
   p{

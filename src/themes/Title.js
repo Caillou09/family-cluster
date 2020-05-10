@@ -10,7 +10,7 @@ const Title  = ({className, children}) => {
   return (
     <div className={className}>
       <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
-      <ButtonStyled url='/connexion' text='Connexion'/>
+      <ButtonStyled url='/connexion' text='Login'/>
     </div>
   )
 }

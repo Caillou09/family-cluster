@@ -7,6 +7,7 @@ import Title from './themes/Title';
 import NotFound from './components/NotFound';
 import GlobalStyle from './themes/GlobalStyle'
 import * as serviceWorker from './serviceWorker';
+import UserProvider from './providers/UserProvider'
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
@@ -15,11 +16,13 @@ function Root() {
     <BrowserRouter>
       <GlobalStyle/>
       <Title>WOD of the day</Title>
-      <Switch>
-        <Route exact path='/' component={App}/>
-        <Route exact path='/connexion' component={Connexion}></Route>
-        <Route component={NotFound}></Route>
-      </Switch>
+      <UserProvider>
+        <Switch>
+          <Route exact path='/' component={App}/>
+          <Route exact path='/connexion' component={Connexion}></Route>
+          <Route component={NotFound}></Route>
+        </Switch>
+      </UserProvider>
     </BrowserRouter>
   )
 

@@ -7,7 +7,8 @@ export const UserContext = createContext({ user: null });
 class UserProvider extends Component {
 
   state = {
-    user :null
+    user :null,
+
   };
 
   componentDidMount = () => {
@@ -15,6 +16,7 @@ class UserProvider extends Component {
         this.setState({ user: userAuth});
       });
     };
+
 
   render() {
     return (

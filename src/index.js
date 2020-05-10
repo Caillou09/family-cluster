@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Connexion from './components/Connexion';
+import createWod from './components/CreateWod'
 import Title from './themes/Title';
 import NotFound from './components/NotFound';
 import GlobalStyle from './themes/GlobalStyle'
@@ -15,11 +16,12 @@ function Root() {
   return(
     <BrowserRouter>
       <GlobalStyle/>
-      <Title>WOD of the day</Title>
       <UserProvider>
+        <Title>WOD of the day</Title>
         <Switch>
           <Route exact path='/' component={App}/>
           <Route exact path='/connexion' component={Connexion}></Route>
+          <Route exact path='/createWod' component={createWod}></Route>
           <Route component={NotFound}></Route>
         </Switch>
       </UserProvider>

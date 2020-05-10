@@ -2,15 +2,30 @@
 import styled from 'styled-components';
 import {colors, pxToRem, media} from './helpers';
 import ButtonStyled from './ButtonStyled';
+import ButtonSignOut from './ButtonSignOut';
 import {Link} from 'react-router-dom';
+import {UserContext} from '../providers/UserProvider'
 
-import React from 'react'
+
+import React, {useContext} from 'react'
 
 const Title  = ({className, children}) => {
+
+  const user = useContext(UserContext)
+  console.log(user)
+
   return (
     <div className={className}>
+      {user !== null  &&
+        <ButtonStyled url='/connexion' text='créer WOD'/>
+      }
       <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
-      <ButtonStyled url='/connexion' text='Login'/>
+        {user !== null  ?
+          <ButtonSignOut></ButtonSignOut>
+          :
+          <ButtonStyled url='/connexion' text='connexion'/>
+        }
+
     </div>
   )
 }

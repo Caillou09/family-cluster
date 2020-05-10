@@ -17,7 +17,7 @@ const Title  = ({className, children}) => {
   return (
     <div className={className}>
       {user !== null  &&
-        <ButtonStyled url='/connexion' text='créer WOD'/>
+        <ButtonStyled url='/createWod' text='créer WOD'/>
       }
       <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
         {user !== null  ?

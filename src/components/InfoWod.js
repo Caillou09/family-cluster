@@ -30,7 +30,7 @@ Object.keys(data).map( e => {
 
   return (
     <div className={className}>
-      <p>
+      <p style={{margin : '0'}}>
         {data.temps} sec/exo<br/>
         {data.tours} tours<br/>
         <b>Total : {total} min</b> <br/>
@@ -38,7 +38,6 @@ Object.keys(data).map( e => {
       <p>
         {data.recup} sec entre les tours<br/>
         {data.break} sec entre les exos
-
       </p>
     </div>
   )

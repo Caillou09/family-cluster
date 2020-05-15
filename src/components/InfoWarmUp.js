@@ -42,7 +42,7 @@ Object.keys(data).map( e => {
 export default styled(InfoWarmUp)`
 color : ${colors.grey};
 display : flex;
-flex direction : column;
+flex direction : column wrap;
 justify-content : space-evenly;
-
+width : auto;
 `

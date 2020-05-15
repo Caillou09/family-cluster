@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Connexion from './components/Connexion';
-import createWod from './components/CreateWod'
+import CreateWod from './components/CreateWod';
 import Title from './themes/Title';
 import NotFound from './components/NotFound';
 import GlobalStyle from './themes/GlobalStyle'
@@ -21,7 +21,7 @@ function Root() {
         <Switch>
           <Route exact path='/' component={App}/>
           <Route exact path='/connexion' component={Connexion}></Route>
-          <Route exact path='/createWod' component={createWod}></Route>
+          <Route exact path='/createWod' component={CreateWod}></Route>
           <Route component={NotFound}></Route>
         </Switch>
       </UserProvider>

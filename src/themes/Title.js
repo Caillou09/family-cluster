@@ -12,7 +12,6 @@ import React, {useContext} from 'react'
 const Title  = ({className, children}) => {
 
   const user = useContext(UserContext)
-  console.log(user)
 
   return (
     <div className={className}>

@@ -56,7 +56,7 @@ const Connexion = ({className}) => {
           required/>
         <input
           placeholder='mot de passe'
-          type="text"
+          type="password"
           name = 'userPassword'
           onChange = {(event) => onChangeHandler(event)}
           required/>

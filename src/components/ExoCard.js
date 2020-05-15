@@ -23,7 +23,7 @@ export default styled(ExoCard)`
 
 
   img{
-    width : ${pxToRem(110)};
+    width : ${pxToRem(150)};
   }
 
   p{
@@ -31,11 +31,12 @@ export default styled(ExoCard)`
     color : ${colors.grey};
     text-align : center;
     font-family : 'Molengo';
+    padding : ${pxToRem(10)};
   }
 
   ${media.small`
   img {
-    width : ${pxToRem(150)};
+    width : ${pxToRem(200)};
   }
   `};
 `

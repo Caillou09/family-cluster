@@ -56,25 +56,21 @@ const CreateWod = ({className}) => {
   }
 
   const handleSubmit = e => {
-
-    var exos = ''
-    for ( const exo of exosWod) {
-      exos = {exo : dataExos.exo}
-    }
-
-    console.log(exos)
-
-    // firebaseApp.database().ref('WODS/').push({
-    //   Principal : {
-    //     Exos : {
-    //       exosWod.map( exo => {
-    //         exo : dataExos.exo
-    //       })
-    //     }
-    //   }
-    // }
-    // )
-
+    //push les exos du Warmup dans le bon endroit de la BDD
+    let arrayExos = [];
+    Object.keys(dataExos).map( exo => {
+        for (let i = 0; i < exosWu.length; i++) {
+          if (exo === exosWu[i]) {
+            arrayExos.push(dataExos[exo])
+          }
+        }
+    })
+    arrayExos.forEach( exo => {
+      firebaseApp.database().ref('WODS/Principal/Exos').push().set({
+        'image' : exo.image,
+        'name' : exo.name
+      })
+    })
   }
 
 

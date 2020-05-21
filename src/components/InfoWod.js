@@ -20,13 +20,17 @@ useEffect( () => {
 }, []);
 
 
+
+
 Object.keys(data).map( e => {
   if (typeof data[e] === 'object') {
     return (
       total = Object.keys(data[e]).length * data.temps * data.tours / 60
-    )
+      )
+
   }
 })
+
 
   return (
     <div className={className}>

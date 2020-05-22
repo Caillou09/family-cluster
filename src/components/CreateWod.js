@@ -56,7 +56,8 @@ const CreateWod = ({className}) => {
   }
 
   const handleSubmit = e => {
-    //push les exos du Warmup dans le bon endroit de la BDD
+    e.preventDefault()
+    //Exos du Warm-up dans le bon endroit de la BDD
     let arrayExos = [];
     Object.keys(dataExos).map( exo => {
         for (let i = 0; i < exosWu.length; i++) {
@@ -66,12 +67,59 @@ const CreateWod = ({className}) => {
         }
     })
     arrayExos.forEach( exo => {
+      firebaseApp.database().ref('WODS/Warm-up/Exos').push().set({
+        'image' : exo.image,
+        'name' : exo.name
+      })
+    })
+
+    // Infos Warm-up dans BDD
+    firebaseApp.database().ref('WODS/Warm-up/infosWu').set({
+      'temps' : tempsExoWu,
+      'tours' : nbreToursWu
+    })
+
+    //Exos du WOD dans le bon endroit de la BDD
+    let arrayExosWod = [];
+    Object.keys(dataExos).map( exo => {
+        for (let i = 0; i < exosWod.length; i++) {
+          if (exo === exosWod[i]) {
+            arrayExosWod.push(dataExos[exo])
+          }
+        }
+    })
+    arrayExos.forEach( exo => {
       firebaseApp.database().ref('WODS/Principal/Exos').push().set({
         'image' : exo.image,
         'name' : exo.name
       })
     })
+
+    // Infos wod dans BDD
+    firebaseApp.database().ref('WODS/Principal/infosWod').set({
+      'temps' : tempsExoWod,
+      'tours' : nbreToursWod,
+      'break' : recupExos,
+      'recup' : recupTours
+
+    })
+
+    //intégration de la date dans la BDD
+    let dateBdd = startDate.getTime()
+    firebaseApp.database().ref('WODS/infos').set({
+      'date' : dateBdd
+    })
   }
+
+  //Challenge dans Bdd
+  firebaseApp.database().ref('WODS/Challenge').set({
+    'image' : 'https://media.giphy.com/media/TTPi3fB9F5Aqs/giphy.gif',
+    'name' : nomChallenge    
+  })
+
+
+
+
 
 
   return (
@@ -81,6 +129,7 @@ const CreateWod = ({className}) => {
         <Form.Field>
           <label>Date du WOD</label>
           <DatePicker
+            mode = "time"
             required
             selected={startDate}
             onChange={(event) => handleChangeDate(event)}>

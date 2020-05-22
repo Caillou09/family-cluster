@@ -2,21 +2,27 @@
 import styled from 'styled-components';
 import {colors, pxToRem, media} from './helpers';
 import ButtonStyled from './ButtonStyled';
+import ButtonStyledNoLink from './ButtonStyledNoLink';
 import ButtonSignOut from './ButtonSignOut';
 import {Link} from 'react-router-dom';
 import {UserContext} from '../providers/UserProvider'
+import CreateExo from '../components/CreateExo'
 
 
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 
-const Title  = ({className, children}) => {
+const Title  = ({className, children, openModal}) => {
 
   const user = useContext(UserContext)
+
 
   return (
     <div className={className}>
       {user !== null  &&
-        <ButtonStyled url='/createWod' text='créer WOD'/>
+        <div>
+          <ButtonStyled url='/createWod' text='créer WOD'/>
+          <ButtonStyledNoLink onClick={openModal} text='créer Exo'></ButtonStyledNoLink>
+        </div>
       }
       <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
         {user !== null  ?

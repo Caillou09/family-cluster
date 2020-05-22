@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -9,15 +9,22 @@ import NotFound from './components/NotFound';
 import GlobalStyle from './themes/GlobalStyle'
 import * as serviceWorker from './serviceWorker';
 import UserProvider from './providers/UserProvider'
+import CreateExo from './components/CreateExo'
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 function Root() {
+
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
   return(
     <BrowserRouter>
       <GlobalStyle/>
       <UserProvider>
-        <Title>WOD of the day</Title>
+        <Title openModal={() => setModalIsOpen(true)}>WOD of the day</Title>
+        <CreateExo
+          modalIsOpen={modalIsOpen}
+          closeModal={() => setModalIsOpen(false)}></CreateExo>
         <Switch>
           <Route exact path='/' component={App}/>
           <Route exact path='/connexion' component={Connexion}></Route>

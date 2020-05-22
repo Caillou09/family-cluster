@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Modal from 'react-modal'
 import TitleSection from '../themes/TitleSection'
 import {pxToRem, colors, media} from '../themes/helpers'
-
+import firebaseApp from '../base'
 
 Modal.setAppElement('#root')
 
@@ -13,15 +13,23 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
 
   const [nomExo, setNomExo] = useState('')
   const inputGif = useRef(null)
+  const [imageAsFile, setImageAsFile] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log('prout')
+    const uploadImage = firebaseApp.storage().ref(`${imageAsFile.name}`).put(imageAsFile)
+
   }
 
   const onButtonClick = () => {
     inputGif.current.click()
   }
+
+  const handleImageAsFile = (e) => {
+      const image = e.target.files[0]
+      setImageAsFile(image)
+  }
+
 
   return (
     <div>
@@ -64,10 +72,14 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
               Upload
               <Icon name='file'/>
             </Button>
+            {imageAsFile !== '' &&
+              <span>{imageAsFile.name}</span>
+            }
             <input
               type="file"
               hidden
-              ref={inputGif}/>
+              ref={inputGif}
+              onChange={handleImageAsFile}/>
           </Form.Field>
         </Form.Group>
         <div style={{display:'flex', justifyContent:'center', paddingTop:'50px'}}>

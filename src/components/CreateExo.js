@@ -14,11 +14,29 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
   const [nomExo, setNomExo] = useState('')
   const inputGif = useRef(null)
   const [imageAsFile, setImageAsFile] = useState('')
+  const [imageAsUrl, setImageAsUrl] = useState('')
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    const uploadImage = firebaseApp.storage().ref(`${imageAsFile.name}`).put(imageAsFile)
+    const uploadTask = firebaseApp.storage().ref(`${imageAsFile.name}`).put(imageAsFile)
 
+    await uploadTask.on('state_changed',
+      (snapshot) => {
+        console.log(snapshot)
+      }, (err) => {
+        console.log(err)
+      }, () => {
+        firebaseApp.storage().ref(`${imageAsFile.name}`).getDownloadURL()
+        .then( fireBaseUrl => {
+          setImageAsUrl(fireBaseUrl)
+          firebaseApp.database().ref(`Exos/${nomExo}`).set({
+            'name' : nomExo,
+            'image' : fireBaseUrl
+          })
+        })
+      })
+
+    console.log('prout')
   }
 
   const onButtonClick = () => {
@@ -97,14 +115,24 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
 };
 
 export default styled(CreateExo)`
-  width : 50%;
   background : ${colors.white};
+  padding : ${pxToRem(20)};
+  border-radius : 4px;
   position: absolute;
+  width : 75%;
   left: 50%;
-  top : 25%;
+  top : 15%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  padding : ${pxToRem(50)};
-  border-radius : 4px;
+
+  ${media.small`
+    padding : ${pxToRem(50)};
+    position: absolute;
+    width : 50%;
+    left: 50%;
+    top : 25%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    `};
 
 `

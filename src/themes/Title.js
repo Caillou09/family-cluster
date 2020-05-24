@@ -7,7 +7,7 @@ import ButtonSignOut from './ButtonSignOut';
 import {Link} from 'react-router-dom';
 import {UserContext} from '../providers/UserProvider'
 import CreateExo from '../components/CreateExo'
-
+import MenuBurger from '../components/MenuBurger'
 
 import React, {useContext, useState} from 'react'
 
@@ -19,18 +19,14 @@ const Title  = ({className, children, openModal}) => {
   return (
     <div className={className}>
       {user !== null  &&
-        <div>
-          <ButtonStyled url='/createWod' text='créer WOD'/>
-          <ButtonStyledNoLink onClick={openModal} text='créer Exo'></ButtonStyledNoLink>
-        </div>
+        <MenuBurger openModal={openModal}></MenuBurger>
       }
       <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
-        {user !== null  ?
-          <ButtonSignOut></ButtonSignOut>
-          :
-          <ButtonStyled url='/connexion' text='connexion'/>
-        }
-
+      {user !== null  ?
+        <ButtonSignOut></ButtonSignOut>
+        :
+        <ButtonStyled url='/connexion' text='connexion'/>
+      }
     </div>
   )
 }

@@ -14,9 +14,10 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
   const [nomExo, setNomExo] = useState('')
   const inputGif = useRef(null)
   const [imageAsFile, setImageAsFile] = useState('')
-  const [imageAsUrl, setImageAsUrl] = useState('')
 
-  const handleSubmit = async e => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const uploadTask = firebaseApp.storage().ref(`${imageAsFile.name}`).put(imageAsFile)
 
@@ -28,15 +29,12 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
       }, () => {
         firebaseApp.storage().ref(`${imageAsFile.name}`).getDownloadURL()
         .then( fireBaseUrl => {
-          setImageAsUrl(fireBaseUrl)
           firebaseApp.database().ref(`Exos/${nomExo}`).set({
             'name' : nomExo,
             'image' : fireBaseUrl
           })
         })
       })
-
-    console.log('prout')
   }
 
   const onButtonClick = () => {
@@ -70,7 +68,7 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
           right : '10px',
       }} ></Icon>
       <TitleSection>Création d'un Exo</TitleSection>
-      <Form onSubmit={e => handleSubmit(e)}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group widths = 'equal'>
           <Form.Field>
             <label>Nom de l'exo</label>

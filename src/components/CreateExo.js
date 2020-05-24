@@ -80,7 +80,7 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
               value = {nomExo}
               type="text"
               placeholder = 'Ex : Air fucking'
-              onChange = {event => setNomExo(event.target.value)}/>
+              onChange = {event => setNomExo(event.target.value.toLowerCase())}/>
           </Form.Field>
           <Form.Field>
             <label>Chargez un Gif pour l'exo</label>

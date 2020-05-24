@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react'
-import GlobalStyle from '../themes/GlobalStyle'
+import React, {useState} from 'react'
+
 import {useHistory} from 'react-router-dom'
 
 import styled from 'styled-components'
@@ -12,8 +12,6 @@ const Connexion = ({className}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [data, setData] = useState({});
-
   const history = useHistory();
 
 

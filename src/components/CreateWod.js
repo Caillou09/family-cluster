@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 import {pxToRem, colors, media} from '../themes/helpers'
 import {Button, Form, Input, Grid, Icon} from 'semantic-ui-react';
@@ -8,6 +8,7 @@ import DropdownUi from './ui/DropdownUi'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import firebaseApp from '../base'
+import {UserContext} from '../providers/UserProvider'
 
 
 const CreateWod = ({className}) => {
@@ -25,6 +26,7 @@ const CreateWod = ({className}) => {
   const [exosWu, setExosWu] = useState([])
   const [exosWod, setExosWod] = useState([])
 
+  const user = useContext(UserContext)
 //récupération données Exos
   const exosOptions = []
 
@@ -58,23 +60,23 @@ const CreateWod = ({className}) => {
   const handleSubmit = e => {
     e.preventDefault()
     //Exos du Warm-up dans le bon endroit de la BDD
-    let arrayExos = [];
+    let arrayExosWu = [];
     Object.keys(dataExos).map( exo => {
         for (let i = 0; i < exosWu.length; i++) {
           if (exo === exosWu[i]) {
-            arrayExos.push(dataExos[exo])
+            arrayExosWu.push(dataExos[exo])
           }
         }
     })
-    arrayExos.forEach( exo => {
-      firebaseApp.database().ref('WODS/Warm-up/Exos').push().set({
+    arrayExosWu.forEach( exo => {
+      firebaseApp.database().ref(`WODS/${startDate}/Warm-up/Exos`).push().set({
         'image' : exo.image,
         'name' : exo.name
       })
     })
 
     // Infos Warm-up dans BDD
-    firebaseApp.database().ref('WODS/Warm-up/infosWu').set({
+    firebaseApp.database().ref(`WODS/${startDate}/Warm-up/infoWu`).set({
       'temps' : tempsExoWu,
       'tours' : nbreToursWu
     })
@@ -88,15 +90,15 @@ const CreateWod = ({className}) => {
           }
         }
     })
-    arrayExos.forEach( exo => {
-      firebaseApp.database().ref('WODS/Principal/Exos').push().set({
+    arrayExosWod.forEach( exo => {
+      firebaseApp.database().ref(`WODS/${startDate}/Principal/Exos`).push().set({
         'image' : exo.image,
         'name' : exo.name
       })
     })
 
     // Infos wod dans BDD
-    firebaseApp.database().ref('WODS/Principal/infosWod').set({
+    firebaseApp.database().ref(`WODS/${startDate}/Principal/infoWu`).set({
       'temps' : tempsExoWod,
       'tours' : nbreToursWod,
       'break' : recupExos,
@@ -106,16 +108,31 @@ const CreateWod = ({className}) => {
 
     //intégration de la date dans la BDD
     let dateBdd = startDate.getTime()
-    firebaseApp.database().ref('WODS/infos').set({
-      'date' : dateBdd
+    firebaseApp.database().ref(`WODS/${startDate}/infos`).set({
+      'date' : dateBdd,
+      'coach' : user.uid
     })
+
+    //Challenge dans Bdd
+    firebaseApp.database().ref(`WODS/${startDate}/Challenge`).set({
+      'image' : 'https://media.giphy.com/media/TTPi3fB9F5Aqs/giphy.gif',
+      'name' : nomChallenge
+    })
+
+    setStartDate(new Date())
+    setTempsExoWu('')
+    setNbreToursWu('')
+    setTempsExoWod('')
+    setNbreToursWod('')
+    setRecupTours('')
+    setRecupExos('')
+    setNomChallenge('')
+    setExosWu('')
+    setExosWod('')
+
   }
 
-  //Challenge dans Bdd
-  firebaseApp.database().ref('WODS/Challenge').set({
-    'image' : 'https://media.giphy.com/media/TTPi3fB9F5Aqs/giphy.gif',
-    'name' : nomChallenge    
-  })
+
 
 
 
@@ -132,6 +149,7 @@ const CreateWod = ({className}) => {
             mode = "time"
             required
             selected={startDate}
+            showTimeSelect
             onChange={(event) => handleChangeDate(event)}>
           </DatePicker>
         </Form.Field>

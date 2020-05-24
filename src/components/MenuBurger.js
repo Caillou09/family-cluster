@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom';
 import {slide as Menu} from 'react-burger-menu'
-
+import firebaseApp from '../base'
+import {Icon} from 'semantic-ui-react';
 
 const MenuBurger = ({openModal}) => {
 
@@ -20,6 +21,11 @@ const MenuBurger = ({openModal}) => {
     openModal()
   }
 
+  const handleSignout = () => {
+    firebaseApp.auth().signOut()
+    setMenuOpen(false)
+  }
+
   return (
       <div style={{
         position: 'absolute',
@@ -29,9 +35,13 @@ const MenuBurger = ({openModal}) => {
         <Menu
           isOpen={menuOpen}
           onStateChange={(state) => handleStateChange(state)}>
-            <Link onClick={closeMenu} id="home" className="menu-item" to="/">Accueil</Link>
-            <Link onClick={closeMenu} id="about" className="menu-item" to="/createwod">Créer Wod</Link>
-            <Link onClick={onClickModal} id="about" className="menu-item">Créer Exo</Link>
+            <Link onClick={closeMenu} className="menu-item" to="/">Accueil</Link>
+            <Link onClick={closeMenu} className="menu-item" to="/createwod">Créer Wod</Link>
+            <Link onClick={onClickModal} className="menu-item">Créer Exo</Link>
+            <Link
+              onClick={handleSignout}
+              className="menu-item"
+              to="/connexion"><Icon name='log out'/>Déconnexion</Link>
         </Menu>
       </div>
   )

@@ -53,6 +53,7 @@ body {
 .bm-cross-button {
   height: 24px;
   width: 24px;
+  top : 28px !important;
 }
 
 /* Color/shape of close button cross */
@@ -67,9 +68,15 @@ body {
   font-size: 1.15em;
 }
 
+.bm-menu-wrap {
+  max-height : 200px;
+  padding-top : 20px;
+  padding-left : 20px;
+}
+
 /* Morph shape necessary with bubble or elastic */
 .bm-morph-shape {
-  fill: #373a47;
+  fill: #152D86;
 }
 
 /* Wrapper for item list */

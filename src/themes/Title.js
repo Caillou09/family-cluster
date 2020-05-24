@@ -22,10 +22,8 @@ const Title  = ({className, children, openModal}) => {
         <MenuBurger openModal={openModal}></MenuBurger>
       }
       <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
-      {user !== null  ?
-        <ButtonSignOut></ButtonSignOut>
-        :
-        <ButtonStyled url='/connexion' text='connexion'/>
+      {user === null  &&
+          <ButtonStyled url='/connexion' text='connexion'/>      
       }
     </div>
   )

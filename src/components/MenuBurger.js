@@ -34,7 +34,8 @@ const MenuBurger = ({openModal}) => {
       }}>
         <Menu
           isOpen={menuOpen}
-          onStateChange={(state) => handleStateChange(state)}>
+          onStateChange={(state) => handleStateChange(state)}
+          customBurgerIcon={ <Icon name="setting" size='big'/> }>
             <Link onClick={closeMenu} className="menu-item" to="/">Accueil</Link>
             <Link onClick={closeMenu} className="menu-item" to="/createwod">Créer Wod</Link>
             <Link onClick={onClickModal} className="menu-item">Créer Exo</Link>

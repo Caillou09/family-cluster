@@ -23,7 +23,7 @@ const Title  = ({className, children, openModal}) => {
       }
       <h1><Link style={{textDecoration:'none', color:'white'}} to='/'>{children}</Link></h1>
       {user === null  &&
-          <ButtonStyled url='/connexion' text='connexion'/>      
+          <ButtonStyled url='/connexion' text='connexion'/>
       }
     </div>
   )
@@ -34,21 +34,28 @@ display : flex;
 background : ${colors.primary};
 align-items : center;
 flex-direction : column;
-padding : ${pxToRem(5)};
+padding : ${pxToRem(20)};
+
+h1 {
+  font-size : ${pxToRem(40)};
+  color : ${colors.white};
+  text-align : center;
+  font-family : 'Molengo';
+  background : ${colors.primary};
+  margin : auto;
+  width : auto;
+}
 
 ${media.small`
   flex-direction : row;
-`};
-
+  padding : ${pxToRem(5)};
   h1 {
     font-size : ${pxToRem(64)};
-    color : ${colors.white};
-    text-align : center;
-    font-family : 'Molengo';
-    background : ${colors.primary};
-    margin : auto;
-    width : auto;
   }
+
+`};
+
+
 
 
 

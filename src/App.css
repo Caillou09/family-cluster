@@ -43,10 +43,16 @@ body {
   left: 36px;
   top: 25px;
 }
+.bm-burger-button:hover{
+  opacity: 0.7;
+}
+
 
 @media screen and (max-width: 992px) {
   .bm-burger-button {
-    top: 100px;
+    position : fixed;
+    top: 16vh;
+    left : 3vw;
   }
 }
 
@@ -60,6 +66,17 @@ body {
   height: 24px;
   width: 24px;
   top : 28px !important;
+}
+
+/* Class of icon */
+.bm-icon {
+  color: white;
+}
+
+@media screen and (max-width: 992px) {
+  .bm-icon {
+    color: #152D86;
+  }
 }
 
 /* Color/shape of close button cross */

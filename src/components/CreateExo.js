@@ -35,6 +35,9 @@ const CreateExo = ({className, modalIsOpen, closeModal}) => {
           })
         })
       })
+      setNomExo('')
+      setImageAsFile('')
+    closeModal()
   }
 
   const onButtonClick = () => {

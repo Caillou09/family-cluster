@@ -15,6 +15,11 @@ const MenuBurger = ({openModal}) => {
     setMenuOpen(state.isOpen)
   }
 
+  const onClickModal = () => {
+    setMenuOpen(false)
+    openModal()
+  }
+
   return (
       <div style={{
         position: 'absolute',
@@ -26,7 +31,7 @@ const MenuBurger = ({openModal}) => {
           onStateChange={(state) => handleStateChange(state)}>
             <Link onClick={closeMenu} id="home" className="menu-item" to="/">Accueil</Link>
             <Link onClick={closeMenu} id="about" className="menu-item" to="/createwod">Créer Wod</Link>
-            <Link onClick={openModal} id="about" className="menu-item">Créer Exo</Link>
+            <Link onClick={onClickModal} id="about" className="menu-item">Créer Exo</Link>
         </Menu>
       </div>
   )

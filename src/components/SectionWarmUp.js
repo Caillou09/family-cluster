@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-
+import React, {useEffect, useState, useContext} from 'react'
+import {DateContext} from '../providers/DateProvider';
 import styled from 'styled-components'
 import {pxToRem, media} from '../themes/helpers'
 
@@ -15,14 +15,17 @@ const SectionWarmUp = ({className}) => {
 
 const [dataExo, setDataExo] = useState({})
 
+const date = useContext(DateContext)
+
 useEffect(() => {
+  const dateString = new Date(date);
   firebaseApp.database()
-    .ref('WOD/Warm-up/Exos')
+    .ref(`WODS/${dateString}/Warm-up/Exos`)
     .on('value', function(snapshot){
     const state = snapshot.val();
     setDataExo(state)
   })
-}, []);
+}, [date]);
 
 
   return(
@@ -30,7 +33,7 @@ useEffect(() => {
       <TitleSection>Warm-up</TitleSection>
       <InfoWarmUp></InfoWarmUp>
       <ListeExos>
-        {
+        { dataExo ?
           Object.keys(dataExo).map(exos => {
             return(
               <ExoCard
@@ -40,6 +43,7 @@ useEffect(() => {
               </ExoCard>
               )
             })
+            : 'Loading'
           }
       </ListeExos>
     </div>

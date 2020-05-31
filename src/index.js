@@ -9,6 +9,7 @@ import NotFound from './components/NotFound';
 import GlobalStyle from './themes/GlobalStyle'
 import * as serviceWorker from './serviceWorker';
 import UserProvider from './providers/UserProvider'
+import DateProvider from './providers/DateProvider'
 import CreateExo from './components/CreateExo'
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
@@ -20,6 +21,7 @@ function Root() {
   return(
     <BrowserRouter>
       <GlobalStyle/>
+      <DateProvider>
       <UserProvider>
         <Title openModal={() => setModalIsOpen(true)}>WOD of the day</Title>
         <CreateExo
@@ -32,6 +34,7 @@ function Root() {
           <Route component={NotFound}></Route>
         </Switch>
       </UserProvider>
+      </DateProvider>
     </BrowserRouter>
   )
 

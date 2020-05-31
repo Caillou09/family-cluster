@@ -1,39 +1,42 @@
-import React, {useEffect, useState} from 'react'
-
+import React, {useEffect, useState, useContext} from 'react'
+import {DateContext} from '../providers/DateProvider';
 import styled from 'styled-components';
 import {colors, pxToRem} from '../themes/helpers'
 
 import firebaseApp from '../base'
 
-const InfoWarmUp = ({className, total}) => {
+const InfoWarmUp = ({
+  className, temps, tours, nmbrExos, total}) => {
 
 const [data, setData] = useState({})
 
+const date = useContext(DateContext)
+
+
 useEffect( () => {
+  const dateString = new Date(date);
   firebaseApp.database()
-    .ref('WOD/Warm-up')
+    .ref(`WODS/${dateString}/Warm-up`)
     .on('value', function(snapshot) {
       const state = snapshot.val();
       setData(state)
     })
+}, [date]);
 
-}, []);
+if (data !== null && data !== {}) {
+  temps = data.infoWu ? data.infoWu.temps : 'loading';
+  tours = data.infoWu ? data.infoWu.tours : null;
+  total = data.Exos ? Object.keys(data.Exos).length*temps*tours/60 : null;
+}
 
-
-Object.keys(data).map( e => {
-  if (typeof data[e] === 'object') {
-    return (
-      total = Object.keys(data[e]).length * data.temps * data.tours / 60
-    )
-  }
-})
 
   return (
+
     <div className={className}>
-      <p>
-        {data.temps} sec/exo<br/>
-        {data.tours} tours<br/>
-      <b>Total : {total} min</b> <br/>
+      <p style={{margin : '0'}}>
+        {temps} sec/exo<br/>
+        {tours} tours<br/>
+        <b>Total : {total} min</b> <br/>
       </p>
     </div>
   )

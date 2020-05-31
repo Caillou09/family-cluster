@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-
+import React, {useEffect, useState, useContext} from 'react'
+import {DateContext} from '../providers/DateProvider';
 import styled from 'styled-components'
 import {pxToRem, media} from '../themes/helpers'
 
@@ -14,15 +14,17 @@ import firebaseApp from '../base'
 const SectionWod = ({className}) => {
 
   const [dataExos, setDataExos] = useState({})
+  const date = useContext(DateContext)
 
   useEffect(() => {
+    const dateString = new Date(date);
     firebaseApp.database()
-      .ref('WOD/Principal/Exos')
+      .ref(`WODS/${dateString}/Principal/Exos`)
       .on('value', function(snapshot){
       const state = snapshot.val();
       setDataExos(state)
     })
-  }, []);
+  }, [date]);
 
 
   return(
@@ -30,7 +32,7 @@ const SectionWod = ({className}) => {
       <TitleSection>WOD</TitleSection>
       <InfoWod></InfoWod>
       <ListeExos>
-        {
+        { dataExos ?
           Object.keys(dataExos).map(exos => {
             return(
               <ExoCard
@@ -40,6 +42,7 @@ const SectionWod = ({className}) => {
               </ExoCard>
               )
             })
+            : 'Loading'
           }
       </ListeExos>
     </div>

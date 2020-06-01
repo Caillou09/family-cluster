@@ -17,10 +17,11 @@ const [data, setData] = useState({})
 
 const date = useContext(DateContext)
 
+
 useEffect( () => {
-  const dateString = new Date(date);
+  
   firebaseApp.database()
-    .ref(`WODS/${dateString}/Principal`)
+    .ref(`WODS/${date}/Principal`)
     .on('value', function(snapshot) {
       const state = snapshot.val();
       setData(state)
@@ -28,10 +29,12 @@ useEffect( () => {
 }, [date]);
 
 
+
   temps = ((data || {}).infoWu || {}).temps;
   tours = ((data || {}).infoWu || {}).tours;
   recup = ((data || {}).infoWu || {}).recup;
   pause = ((data || {}).infoWu || {}).break;
+  console.log(data);
 
 if (data && data.Exos) {
   const totalNum = Object.keys(data.Exos).length*temps*tours*pause*recup/60;

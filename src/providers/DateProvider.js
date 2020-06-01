@@ -21,21 +21,16 @@ const DateProvider = ({children}) => {
   }, []);
 
   useEffect( () => {
-    if (dates.length>0) {
-      const arrDates = []
-      dates.forEach( date => {
-        let d = new Date(date).getTime()
-        arrDates.push(d);
-      })
-
+    if (dates.length > 0) {
       const today = new Date().getTime();
-      const closest = arrDates.reduce((acc, item) => {
+      const closest = dates.reduce((acc, item) => {
         if( acc - today < item - today) return acc
         else return item;
       });
       console.log(closest);
       setDate(closest);
     }
+
   }, [dates]);
 
 

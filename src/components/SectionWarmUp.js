@@ -18,9 +18,8 @@ const [dataExo, setDataExo] = useState({})
 const date = useContext(DateContext)
 
 useEffect(() => {
-  const dateString = new Date(date);
   firebaseApp.database()
-    .ref(`WODS/${dateString}/Warm-up/Exos`)
+    .ref(`WODS/${date}/Warm-up/Exos`)
     .on('value', function(snapshot){
     const state = snapshot.val();
     setDataExo(state)

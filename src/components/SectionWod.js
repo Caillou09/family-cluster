@@ -17,9 +17,9 @@ const SectionWod = ({className}) => {
   const date = useContext(DateContext)
 
   useEffect(() => {
-    const dateString = new Date(date);
+
     firebaseApp.database()
-      .ref(`WODS/${dateString}/Principal/Exos`)
+      .ref(`WODS/${date}/Principal/Exos`)
       .on('value', function(snapshot){
       const state = snapshot.val();
       setDataExos(state)

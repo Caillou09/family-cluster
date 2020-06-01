@@ -15,7 +15,7 @@ const CreateWod = ({className}) => {
 
   const [dataExos, setDataExos] = useState('')
 
-  const [startDate, setStartDate] = useState(new Date())
+  const [startDate, setStartDate] = useState(new Date().getTime())
   const [tempsExoWu, setTempsExoWu] = useState('')
   const [nbreToursWu, setNbreToursWu] = useState('')
   const [tempsExoWod, setTempsExoWod] = useState([])
@@ -54,7 +54,8 @@ const CreateWod = ({className}) => {
   };
 
   const handleChangeDate = date => {
-    setStartDate(date)
+
+    setStartDate(date.getTime());
   }
 
   const handleSubmit = e => {
@@ -107,7 +108,7 @@ const CreateWod = ({className}) => {
     })
 
     //intégration de la date dans la BDD
-    let dateBdd = startDate.getTime()
+    let dateBdd = startDate;
     firebaseApp.database().ref(`WODS/${startDate}/infos`).set({
       'date' : dateBdd,
       'coach' : user.uid

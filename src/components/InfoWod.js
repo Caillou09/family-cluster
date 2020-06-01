@@ -28,11 +28,15 @@ useEffect( () => {
 }, [date]);
 
 if (data !== null && data !== {}) {
-  temps = data.infoWu ? data.infoWu.temps : 'loading';
-  tours = data.infoWu ? data.infoWu.tours : 'loading';
-  recup = data.infoWu ? data.infoWu.recup : 'loading';
-  pause = data.infoWu ? data.infoWu.break : 'loading';
-  total = data.Exos ? Object.keys(data.Exos).length*temps*tours*pause*recup/60 : 'loading';
+  temps = ((data || {}).infoWu || {}).temps;
+  tours = ((data || {}).infoWu || {}).tours;
+  recup = ((data || {}).infoWu || {}).recup;
+  pause = ((data || {}).infoWu || {}).pause;
+
+  if (data.Exo) {
+    const totalNum = Object.keys(data.Exos).length*temps*tours*pause*recup/60;
+    total = totalNum.toFixed(2);
+  }
 
 }
 
@@ -44,7 +48,7 @@ if (data !== null && data !== {}) {
       <p style={{margin : '0'}}>
         {temps} sec/exo<br/>
         {tours} tours<br/>
-        <b>Total : {total} min</b> <br/>
+      <b>Total : {total} min</b> <br/>
       </p>
       <p>
         {recup} sec entre les tours<br/>

@@ -27,20 +27,16 @@ useEffect( () => {
     })
 }, [date]);
 
-if (data !== null && data !== {}) {
+
   temps = ((data || {}).infoWu || {}).temps;
   tours = ((data || {}).infoWu || {}).tours;
   recup = ((data || {}).infoWu || {}).recup;
-  pause = ((data || {}).infoWu || {}).pause;
+  pause = ((data || {}).infoWu || {}).break;
 
-  if (data.Exo) {
-    const totalNum = Object.keys(data.Exos).length*temps*tours*pause*recup/60;
-    total = totalNum.toFixed(2);
-  }
-
+if (data && data.Exos) {
+  const totalNum = Object.keys(data.Exos).length*temps*tours*pause*recup/60;
+  total = totalNum.toFixed(2);
 }
-
-
 
 
   return (

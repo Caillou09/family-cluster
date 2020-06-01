@@ -6,7 +6,10 @@ import {colors, pxToRem} from '../themes/helpers'
 import firebaseApp from '../base'
 
 const InfoWarmUp = ({
-  className, temps, tours, nmbrExos, total}) => {
+  className,
+  temps,
+  tours,
+  total}) => {
 
 const [data, setData] = useState({})
 
@@ -23,11 +26,13 @@ useEffect( () => {
     })
 }, [date]);
 
-if (data !== null && data !== {}) {
-  temps = data.infoWu ? data.infoWu.temps : 'loading';
-  tours = data.infoWu ? data.infoWu.tours : null;
-  total = data.Exos ? Object.keys(data.Exos).length*temps*tours/60 : null;
-}
+  temps = ((data || {}).infoWu || {}).temps;
+  tours = ((data || {}).infoWu || {}).tours;
+
+  if (data && data.Exos) {
+    const totalNum = Object.keys(data.Exos).length*temps*tours/60;
+    total = totalNum.toFixed(2);
+  }
 
 
   return (

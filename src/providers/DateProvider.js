@@ -7,7 +7,7 @@ export const DateContext = createContext({ date: null });
 const DateProvider = ({children}) => {
 
   const [dates, setDates] = useState([]);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(0);
 
   useEffect( () => {
     const fetchdata = async () => {
@@ -36,7 +36,7 @@ const DateProvider = ({children}) => {
 
     return (
       <>
-        <DateContext.Provider value={date}>
+        <DateContext.Provider value={date} type='number'>
           {children}
         </DateContext.Provider>
       </>

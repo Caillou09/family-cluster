@@ -3,10 +3,10 @@ import Title from './themes/Title'
 import styled from 'styled-components'
 import './App.css';
 
-import SectionWarmUp from './components/SectionWarmUp'
-import SectionWod from './components/SectionWod'
+import SectionGlobal from './components/SectionGlobal'
+
 import GlobalStyle from './themes/GlobalStyle'
-import SectionChallenge from './components/SectionChallenge'
+
 import MainContent from './themes/mainContent'
 
 
@@ -17,9 +17,7 @@ function App() {
   return (
     <>
       <MainContent>
-        <SectionWarmUp/>
-        <SectionWod/>
-        <SectionChallenge/>
+        <SectionGlobal/>
       </MainContent>
 
 

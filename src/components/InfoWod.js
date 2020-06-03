@@ -19,7 +19,7 @@ const date = useContext(DateContext)
 
 
 useEffect( () => {
-  
+
   firebaseApp.database()
     .ref(`WODS/${date}/Principal`)
     .on('value', function(snapshot) {
@@ -34,10 +34,9 @@ useEffect( () => {
   tours = ((data || {}).infoWu || {}).tours;
   recup = ((data || {}).infoWu || {}).recup;
   pause = ((data || {}).infoWu || {}).break;
-  console.log(data);
 
 if (data && data.Exos) {
-  const totalNum = Object.keys(data.Exos).length*temps*tours*pause*recup/60;
+  const totalNum = Object.keys(data.Exos).length*temps*tours/60;
   total = totalNum.toFixed(2);
 }
 

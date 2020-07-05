@@ -24,7 +24,7 @@ const DateProvider = ({children}) => {
     if (dates.length > 0) {
       const today = new Date().getTime();
       const closest = dates.reduce((acc, item) => {
-        if( acc - today < item - today) return acc
+        if( Math.abs(acc - today) < Math.abs(item - today)) return acc
         else return item;
       });
       console.log(closest);

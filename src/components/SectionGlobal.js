@@ -13,9 +13,23 @@ const SectionGlobal = () => {
   const [today, setToday] = useState(new Date().toDateString());
   const [numbDate, setNumbDate] = useState();
 
-  useEffect( () => {
-    setNumbDate(new Date(parseInt(date)).toDateString());
-  }, [date]);
+  // useEffect( () => {
+  //   var nDate = date;
+  //   setNumbDate(new Date(nDate));
+  //   console.log(numbDate);
+  // }, [date]);
+
+  {
+    date !== null ?
+    console.log(new Date(parseInt(date)).toDateString())
+    :
+    console.log('test')
+  }
+
+  console.log(today)
+
+
+
 
   const renderSection = () => {
     return(
@@ -30,7 +44,7 @@ const SectionGlobal = () => {
 
   return (
     <>
-    { today === numbDate
+    { today === new Date(parseInt(date)).toDateString()
       ?
         renderSection()
       :
